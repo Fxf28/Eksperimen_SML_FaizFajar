@@ -85,7 +85,8 @@ def preprocess_data(input_path, output_dir="preprocessing_output"):
         'event_location_district',
         'type_of_injury',
         'killed_by',
-        'place_of_residence_district'
+        'place_of_residence_district',
+        'ammunition'
     ]
 
     cat_cols = [c for c in cat_cols if c in df.columns]
@@ -184,6 +185,12 @@ def preprocess_data(input_path, output_dir="preprocessing_output"):
     joblib.dump(scaler, output_dir / "scaler.pkl")
 
     df.to_csv(output_dir / "final_dataset.csv", index=False)
+
+    print("\n[INFO] Shape Final:")
+    print(f"X_train: {X_train.shape}")
+    print(f"X_test: {X_test.shape}")
+    print(f"y_train: {y_train.shape}")
+    print(f"y_test: {y_test.shape}")
 
     print("=== PREPROCESSING SELESAI ===")
     print(f"Output tersimpan di folder: {output_dir}")
